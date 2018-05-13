@@ -1,18 +1,33 @@
 body {
   text-align: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
-#kitten, #kitten {
-  width: 40vw;
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 30vw;
   height: 500px;
-  cursor: pointer;
-  margin-bottom: 8px;
+  align-items: center;
+  margin-left: 12vw;
 }
 
-#kitten:hover {
+.cat {
+  width: 100%;
+  max-height: 70%;
+  cursor: pointer;
+  display: block;
+}
+
+.container:hover {
   border: 4px solid green;
 }
 
-#tapCount {
-  margin-top: 10vh;
+.name {
+  margin-left: 12vw;
+}
+
+.count {
+  margin-left: 14vw;
 }
