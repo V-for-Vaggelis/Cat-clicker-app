@@ -14,22 +14,22 @@ Cat.prototype.printName = function() {
   this.container.insertAdjacentHTML('afterbegin', nameHeader);
 }
 
-let kitten1 = new Cat();
-kitten1.name = "Ashy";
-kitten1.board = document.getElementById('tapCount1');
-kitten1.container = document.getElementById('kitten1-container');
-kitten1.printName();
+let ashie = new Cat();
+ashie.name = "Ashie";
+ashie.board = document.getElementById('tapCountAshie');
+ashie.container = document.getElementById('ashie-container');
+ashie.printName();
 
-let kitten2 = new Cat();
-kitten2.name = "Luna";
-kitten2.board = document.getElementById('tapCount2');
-kitten2.container = document.getElementById('kitten2-container');
-kitten2.printName();
+let luna = new Cat();
+luna.name = "Luna";
+luna.board = document.getElementById('tapCountLuna');
+luna.container = document.getElementById('luna-container');
+luna.printName();
 
-kitten1.container.addEventListener("click", function() {
-  kitten1.updateScore();
+ashie.container.addEventListener("click", function() {
+  ashie.updateScore();
 });
 
-kitten2.container.addEventListener("click", function() {
-  kitten2.updateScore();
+luna.container.addEventListener("click", function() {
+  luna.updateScore();
 });
