@@ -24,10 +24,6 @@ body {
   display: block;
 }
 
-.cat-container:hover {
-  border: 4px solid green;
-}
-
 .name {
   margin-left: 12vw;
 }

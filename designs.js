@@ -7,20 +7,28 @@ document.addEventListener('DOMContentLoaded', e => {
     this.score = 0;
   }
 
-  Cat.prototype.updateScore = function() {
-    this.score += 1;
-    let scoreHtml = "<h1 class=\"count\">" + this.score + "</h1>";
-    catContainer.insertAdjacentHTML("beforeend", scoreHtml);
+  Cat.prototype.createScore = function() {
+    let scoreHtml = document.createElement("H1");
+    scoreHtml.classList.add("count");
+    let scoreId = this.name + "-score";
+    scoreHtml.setAttribute("id", scoreId);
+    scoreHtml.textContent = this.score;
+    catContainer.appendChild(scoreHtml);
   };
 
   Cat.prototype.printName = function() {
-    let nameHtml = "<h1 class=\"name\">" + this.name + "</h1>";
-    catContainer.insertAdjacentHTML("beforeend", nameHtml);
+    let nameHtml = document.createElement("H1");
+    nameHtml.classList.add("name");
+    nameHtml.textContent = this.name;
+    catContainer.appendChild(nameHtml);
   };
 
   Cat.prototype.printPicture = function() {
-    let picHtml = "<img alt=" + this.alt + "class=\"cat\" src=" + this.link + "></img>";
-    catContainer.insertAdjacentHTML("beforeend", picHtml);
+    let picHtml = document.createElement("IMG");
+    picHtml.classList.add("cat");
+    picHtml.setAttribute("alt", this.alt);
+    picHtml.setAttribute("src", this.link);
+    catContainer.appendChild(picHtml);
   };
 
   Cat.prototype.changeCat = function() {
@@ -28,10 +36,10 @@ document.addEventListener('DOMContentLoaded', e => {
     catContainer.innerHTML = "";
     this.printName();
     this.printPicture();
-    this.updateScore();
-  }
+    this.createScore();
+  };
 
-// Let's instantiate all the cat objects and store them in an array
+  // Let's instantiate all the cat objects and store them in an array
   let ashie = new Cat();
   ashie.name = "Ashie";
   ashie.alt = "A grey kitty";
@@ -58,8 +66,37 @@ document.addEventListener('DOMContentLoaded', e => {
   grumpy.link = "grumpy.jpg";
 
   let allCats = [ashie, luna, cleo, grouchy, grumpy];
+  /* This is a way to immediately create elements and add event listeners on them, taking advantage of iife's explained
+  on part 4 lesson 1 "closures paragraph", we basically ensure the handler gets immediately executed before the loop continues looping through*/
   for (let cat of allCats) {
-    let nameCode = "<li id=" + cat.name +">" + cat.name + "</li>";
-    nameList.insertAdjacentHTML("beforeend", nameCode);
+    let nameCode = document.createElement("LI");
+    nameCode.setAttribute("id", cat.name);
+    nameCode.textContent = cat.name;
+    // This is an immediately invoked function expression iife
+    nameCode.addEventListener('click', (function(catCopy) {
+      return function() {
+        catContainer.style.display = "auto";
+        catCopy.changeCat();
+      };
+    })(cat));
+    nameList.appendChild(nameCode);
   }
+
+  // Now let's listen for the taps and count them
+  catContainer.addEventListener("click", function(evt) {
+    let target = evt.target;
+    // This creates event delegation, it means target container for image elements
+    if (target.nodeName === "IMG") {
+      // Let's find which object's image was clicked by looping through all objects and comparing the image source
+      let targetImage = target.getAttribute("src");
+      for (let cat of allCats) {
+        if (targetImage === cat.link) {
+          cat.score += 1;
+          let countId = cat.name + "-score";
+          let scoreCount = document.getElementById(countId);
+          scoreCount.textContent = cat.score;
+        }
+      }
+    }
+  });
 });
