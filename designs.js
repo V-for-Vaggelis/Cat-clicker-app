@@ -75,8 +75,8 @@ document.addEventListener('DOMContentLoaded', e => {
     // This is an immediately invoked function expression iife
     nameCode.addEventListener('click', (function(catCopy) {
       return function() {
-        catContainer.style.display = "auto";
         catCopy.changeCat();
+        catContainer.classList.add("container-style");
       };
     })(cat));
     nameList.appendChild(nameCode);
