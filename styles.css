@@ -5,11 +5,36 @@ body {
 }
 
 ul {
-  margin-right: 5vw;
   list-style-type: none;
 }
 
-button {
+form {
+  text-align: left;
+  margin-left: 15%;
+  }
+
+.input {
+  width: 100%;
+  margin-bottom: 1%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+span {
+  width: 30%;
+}
+
+form {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 3%;
+}
+
+.info-add {
+  width: 70%;
+}
+
+.cat-button {
   width: 28vw;
   font-size: 2em;
   cursor: pointer;
@@ -19,13 +44,14 @@ button {
   background-color: rgb(154, 176, 18);
 }
 
-button:hover {
+.cat-button:hover {
   border: 2px ridge black;
   background-color: rgb(200, 247, 12);
 }
 
-#names-container {
+#button-container {
   width: 30vw;
+  margin-right: 5vw;
 }
 
 .cat-container {
@@ -67,8 +93,31 @@ button:hover {
   text-align: center;
 }
 
+#admin {
+  margin-left: 5vw;
+  width: 35%;
+  height: 50px;
+  margin-right: auto;
+  font-size: 2em;
+  border-radius: 10px;
+  border: 1px solid black;
+}
+
+#admin:hover {
+  background-color: silver;
+}
+
+.hide {
+  display: none;
+}
+
+.buttons {
+  cursor: pointer;
+  margin-top: 4%;
+}
+
 @media screen and (max-width: 600px) {
-  button {
+  .cat-button {
     font-size: 1.3em;
   }
   .name, .count {
